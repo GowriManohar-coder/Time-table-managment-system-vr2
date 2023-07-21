@@ -11,7 +11,7 @@ public class SubjectCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public  subjectCRUD() {
+	public  SubjectCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");

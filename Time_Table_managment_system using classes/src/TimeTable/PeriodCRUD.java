@@ -12,14 +12,13 @@ public class PeriodCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public  periodCRUD() {
+	public  PeriodCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
 			

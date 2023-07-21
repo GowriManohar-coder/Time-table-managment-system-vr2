@@ -12,7 +12,7 @@ public class DepartmentsCRUD {
 	private Connection con;
 	Scanner scanner=new Scanner(System.in);
 
-	public departmentCRUD()
+	public DepartmentsCRUD()
 	{
     try
     {

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DaysCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public daysCRUD() {
+	public DaysCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");

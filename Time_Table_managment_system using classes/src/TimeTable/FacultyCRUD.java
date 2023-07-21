@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class FacultyCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public  facultyCRUD() {
+	public  FacultyCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
@@ -95,7 +95,6 @@ public class FacultyCRUD {
 	
 	public void facultySelect() {
 		try {
-			facultyCRUD();
 			String query = "select * from faculty";
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
