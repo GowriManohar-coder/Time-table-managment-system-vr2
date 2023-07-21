@@ -57,7 +57,7 @@ public class ClassesCRUD {
 			st.setString(1, ClassesName);
 			st.setInt(2, ClassesId);
 		} catch (SQLException e) {
-			System.out.println("Error while deleting data: " + e.getMessage());
+			System.out.println("Error while update data: " + e.getMessage());
 		}
 	}
 	
