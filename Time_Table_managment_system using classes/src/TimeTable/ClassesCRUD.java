@@ -10,17 +10,15 @@ import java.util.Scanner;
 public class ClassesCRUD {
 	private Connection con;
 
-	public void ClassesCRUD() {
+	public ClassesCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			Connection con;
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
-			con.close();
 		} catch (ClassNotFoundException e) {
 			System.out.println("unable to find the driver");
 		} catch (SQLException e) {
@@ -37,7 +35,6 @@ public class ClassesCRUD {
 		        scanner.nextLine(); 
 		        System.out.print("Enter Classes Name: ");
 		        String classesName = scanner.nextLine();
-
 		        System.out.print("Enter Department ID: ");
 		        int departmentId = scanner.nextInt();
 		        scanner.close();
@@ -46,6 +43,7 @@ public class ClassesCRUD {
 			st.setInt(1, classesId);
 			st.setString(2, classesName);
 			st.setInt(3, departmentId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -60,6 +58,7 @@ public class ClassesCRUD {
 			String query = "DELETE FROM Classes WHERE classesId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, classesId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -78,6 +77,7 @@ public class ClassesCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, classesName);
 			st.setInt(2, classesId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -92,8 +92,6 @@ public class ClassesCRUD {
 			    int classesId = rs.getInt("classesId");
 			    String classesName = rs.getString("classesName");
 			    int departmentId = rs.getInt("departmentId");
-			    
-
 			    System.out.println(classesId + "  " + classesName + "  " + departmentId);
 			}
 		} catch (SQLException e) {
