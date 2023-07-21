@@ -28,5 +28,11 @@ public class College {
 		return collegeDepartments;
 	}
 
+	@Override
+	public String toString() {
+		return "College [collegeId=" + collegeId + ", collegeName=" + collegeName + ", collegeDepartments="
+				+ collegeDepartments + "]";
+	}
+
 	
 }

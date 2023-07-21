@@ -3,13 +3,14 @@ package TimeTable;
 import java.util.List;
 
 public class Timetable {
-	
-	private int timetableId;
-	private int timetableDays;
-	private int timetablePeriods;
-	private List<Subject> timetableSubjects;
+
+	private int dayId;
+	private int dayName;
+	private int periodId;
+	private int subjectId;
 	private int departmentId;
 	private int classId;
-	private int periodDuration;
+	private int periodFrom;
+	private int periodTo;
 	
 }
