@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class ClassesCRUD {
 	private Connection con;
@@ -28,36 +29,57 @@ public class ClassesCRUD {
 
 	}
 
-	public void ClassesInsert(int ClassesId, String ClassesName, int departmentId) {
+	public void ClassesInsert() {
 		try {
-			String query = "INSERT INTO Classes (ClassesId, ClassesName, departmentId) VALUES (?,?,?)";
+			  Scanner scanner = new Scanner(System.in);
+			  System.out.print("Enter Classes ID: ");
+		        int classesId = scanner.nextInt();
+		        scanner.nextLine(); 
+		        System.out.print("Enter Classes Name: ");
+		        String classesName = scanner.nextLine();
+
+		        System.out.print("Enter Department ID: ");
+		        int departmentId = scanner.nextInt();
+		        scanner.close();
+			String query = "INSERT INTO Classes (classesId, classesName, departmentId) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1, ClassesId);
-			st.setString(2, ClassesName);
+			st.setInt(1, classesId);
+			st.setString(2, classesName);
 			st.setInt(3, departmentId);
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
 	}
 
-	public void Classesdelete(int ClassesId) {
+	public void Classesdelete() {
 		try {
-			String query = "DELETE FROM Classes WHERE ClassesId = ?";
+			 Scanner scanner = new Scanner(System.in);
+			  System.out.print("Enter Classes ID: ");
+		        int classesId = scanner.nextInt();
+		        scanner.nextLine();
+			String query = "DELETE FROM Classes WHERE classesId = ?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1, ClassesId);
+			st.setInt(1, classesId);
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
 	}
 
-	public void Classesupdate(String ClassesName,int ClassesId) {
+	public void Classesupdate() {
 		try {
-			String query = "UPDATE Classes SET ClassesName = '?' WHERE ClassesId = ?";
+			 Scanner scanner = new Scanner(System.in);
+			 System.out.print("Enter classes Name: ");
+		        String classesName = scanner.nextLine();
+		        scanner.nextLine();
+			  System.out.print("Enter Classes ID: ");
+		        int classesId = scanner.nextInt();
+		      
+			String query = "UPDATE Classes SET classesName = '?' WHERE classesId = ?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1, ClassesName);
-			st.setInt(2, ClassesId);
+			st.setString(1, classesName);
+			st.setInt(2, classesId);
 		} catch (SQLException e) {
-			System.out.println("Error while updating data: " + e.getMessage());
+			System.out.println("Error while deleting data: " + e.getMessage());
 		}
 	}
 	
@@ -67,12 +89,12 @@ public class ClassesCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-			    int ClassesId = rs.getInt("ClassesId");
-			    String ClassesName = rs.getString("ClassesName");
+			    int classesId = rs.getInt("classesId");
+			    String classesName = rs.getString("classesName");
 			    int departmentId = rs.getInt("departmentId");
 			    
 
-			    System.out.println(ClassesId + "  " + ClassesName + "  " + ClassesId);
+			    System.out.println(classesId + "  " + classesName + "  " + departmentId);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while reading data: " + e.getMessage());
