@@ -6,11 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PeriodCURD {
-	
+public class DaysCURD {
 	private Connection con;
-
-	public void periodCURD() {
+	public void daysCURD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
@@ -29,50 +27,48 @@ public class PeriodCURD {
 
 	}
 
-	public void periodInsert(int periodId, String periodFrom, String periodTo) {
+	public void daysInsert(int daysId, String daysName) {
 		try {
-			String query = "INSERT INTO period (periodId, periodFrom, periodTo) VALUES (?,?,?)";
+			String query = "INSERT INTO days (daysId, daysName) VALUES (?,?)";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1, periodId);
-			st.setString(2, periodFrom);
-			st.setString(3, periodTo);
+			st.setInt(1, daysId);
+			st.setString(2, daysName);
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
 	}
 
-	public void perioddelete(int periodId) {
+	public void daysdelete(int daysId) {
 		try {
-			String query = "DELETE FROM period WHERE periodId = ?";
+			String query = "DELETE FROM days WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setInt(1, periodId);
+			st.setInt(1, daysId);
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
 	}
 
-	public void periodupdate(int periodId, String periodFrom) {
+	public void daysupdate(int daysId, String daysFrom) {
 		try {
-			String query = "UPDATE period SET periodFrom = '?' WHERE periodId = ?";
+			String query = "UPDATE days SET daysName = '?' WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1, periodFrom);
-			st.setInt(2, periodId);
+			st.setString(1, daysFrom);
+			st.setInt(2, daysId);
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
 		}
 	}
 	
-	public void periodSelect() {
+	public void daysSelect() {
 		try {
-			String query = "select * from period";
+			String query = "select * from days";
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-			    int periodId = rs.getInt("periodId");
-			    String periodFrom = rs.getString("periodFrom");
-			    int periodTo = rs.getInt("periodTo");
+			    int daysId = rs.getInt("daysId");
+			    String daysName = rs.getString("daysName");
 
-			    System.out.println(periodId + "  " + periodFrom + "  " + periodTo);
+			    System.out.println(daysId + "  " + daysName);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while reading data: " + e.getMessage());
