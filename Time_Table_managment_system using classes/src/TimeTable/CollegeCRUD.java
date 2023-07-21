@@ -11,17 +11,15 @@ public class CollegeCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public void CollegeCRUD() {
+	public CollegeCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			Connection con;
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
-			con.close();
 		} catch (ClassNotFoundException e) {
 			System.out.println("unable to find the driver");
 		} catch (SQLException e) {
@@ -47,6 +45,7 @@ public class CollegeCRUD {
 			st.setInt(1, collegeId);
 			st.setString(2, collegeName);
 			st.setString(3, collegeDepartments);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -60,6 +59,7 @@ public class CollegeCRUD {
 			String query = "DELETE FROM college WHERE collegeId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, collegeId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -77,6 +77,7 @@ public class CollegeCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, collegeName);
 			st.setInt(2, collegeId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
 		}
