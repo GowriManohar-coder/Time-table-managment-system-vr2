@@ -10,8 +10,10 @@ import java.util.List;
 public class DepartmentCRUD { 
 	private Connection con;
 
-	public void departmentCrud(){
-    try{
+	void departmentCrud()
+	{
+    try
+    {
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sravika", "root", "root");
     System.out.println("connected to data base");
@@ -25,7 +27,8 @@ public class DepartmentCRUD {
 }
 	public void departmentsCreate(int collegeId,int departmentId, String departmentName,String departmentSubject,String departmentClasses,String departmentFaculty)
 	{
-		try{
+		try
+		{
 			String query = "INSERT INTO departments (collegeId,departmentId, departmentName, departmentSubject,departmentClasses,departmentFaculty) VALUES (?,?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1,collegeId);
