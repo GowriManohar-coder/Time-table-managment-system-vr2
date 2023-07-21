@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class CollegeCRUD {
 	private Connection con;
+	Scanner scanner = new Scanner(System.in); 
 
 	public void CollegeCRUD() {
 		try {
@@ -28,8 +30,18 @@ public class CollegeCRUD {
 
 	}
 
-	public void collegeInsert(int collegeId, String collegeName, String collegeDepartments) {
+	public void collegeInsert() {
 		try {
+			System.out.print("Enter college ID: ");
+	        int collegeId = scanner.nextInt();
+	        scanner.nextLine(); 
+
+	        System.out.print("Enter college name: ");
+	        String collegeName = scanner.nextLine();
+
+	        System.out.print("Enter college departments: ");
+	        String collegeDepartments = scanner.nextLine();
+	        
 			String query = "INSERT INTO college (collegeId, collegeName,collegeDepartments) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, collegeId);
@@ -40,8 +52,11 @@ public class CollegeCRUD {
 		}
 	}
 
-	public void collegedelete(int collegeId) {
+	public void collegedelete() {
 		try {
+			System.out.print("Enter college ID: ");
+	        int collegeId = scanner.nextInt();
+	     
 			String query = "DELETE FROM college WHERE collegeId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, collegeId);
@@ -50,14 +65,20 @@ public class CollegeCRUD {
 		}
 	}
 	
-	public void collegeupdate(String collegeName,int collegeId) {
+	public void collegeupdate() {
 		try {
+	        System.out.print("Enter college name: ");
+	        String collegeName = scanner.nextLine();
+
+	        System.out.print("Enter college ID: ");
+	        int collegeId = scanner.nextInt();
+	        
 			String query = "UPDATE college SET collegeName = '?' WHERE collegeId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, collegeName);
 			st.setInt(2, collegeId);
 		} catch (SQLException e) {
-			System.out.println("Error while update data: " + e.getMessage());
+			System.out.println("Error while updating data: " + e.getMessage());
 		}
 	}
 	
@@ -75,7 +96,7 @@ public class CollegeCRUD {
 			    System.out.println(collegeId + "  " + collegeName + "  " + collegeDepartments );
 			}
 		} catch (SQLException e) {
-			System.out.println("Error while reading data: " + e.getMessage());
+			System.out.println("Error while Reading data: " + e.getMessage());
 		}
 	}
 
