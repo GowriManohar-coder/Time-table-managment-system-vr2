@@ -10,17 +10,17 @@ import java.util.Scanner;
 public class FacultyCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public void facultyCRUD() {
+	public  facultyCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			Connection con;
+			
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
-			con.close();
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("unable to find the driver");
 		} catch (SQLException e) {
@@ -54,6 +54,7 @@ public class FacultyCRUD {
 			st.setInt(3, departmentId);
 			st.setInt(4, subjectId);
 			st.setInt(5, classesId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -67,6 +68,7 @@ public class FacultyCRUD {
 			String query = "DELETE FROM faculty WHERE facultyId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -85,6 +87,7 @@ public class FacultyCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, facultyName);
 			st.setInt(2, facultyId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
 		}
