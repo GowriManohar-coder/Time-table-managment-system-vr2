@@ -3,10 +3,10 @@ package TimeTable;
 public class Period {
 	
 	private int periodId;
-	private int periodFrom;
-	private int periodTo;
+	private String periodFrom;
+	private String periodTo;
 	
-	public Period(int periodId, int periodFrom, int periodTo) {
+	public Period(int periodId, String periodFrom, String periodTo) {
 		super();
 		this.periodId = periodId;
 		this.periodFrom = periodFrom;
@@ -17,11 +17,11 @@ public class Period {
 		return periodId;
 	}
 
-	public int getPeriodFrom() {
+	public String getPeriodFrom() {
 		return periodFrom;
 	}
 
-	public int getPeriodTo() {
+	public String getPeriodTo() {
 		return periodTo;
 	}
 
@@ -29,6 +29,7 @@ public class Period {
 	public String toString() {
 		return "Period [periodId=" + periodId + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + "]";
 	}
+	
 	
 	
 
