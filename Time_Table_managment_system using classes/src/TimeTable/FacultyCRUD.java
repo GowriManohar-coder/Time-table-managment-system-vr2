@@ -4,11 +4,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 
 public class FacultyCRUD {
 	private Connection con;
-
+	Scanner scanner = new Scanner(System.in);
 	public void facultyCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,9 +29,24 @@ public class FacultyCRUD {
 
 	}
 
-	public void facultyInsert(int facultyId, String facultyName, int departmentId, int subjectId, int classId) {
+	public void facultyInsert() {
 		try {
-			facultyCRUD();
+			System.out.print("Enter Faculty ID: ");
+	        int facultyId = scanner.nextInt();
+
+	        System.out.print("Enter Faculty Name: ");
+	        scanner.nextLine(); // Consume the newline left by nextInt()
+	        String facultyName = scanner.nextLine();
+
+	        System.out.print("Enter Department ID: ");
+	        int departmentId = scanner.nextInt();
+
+	        System.out.print("Enter Subject ID: ");
+	        int subjectId = scanner.nextInt();
+
+	        System.out.print("Enter Class ID: ");
+	        int classId = scanner.nextInt();
+
 			String query = "INSERT INTO faculty (facultyId, facultyName, departmentId, subjectId,   classId) VALUES (?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
@@ -43,9 +59,11 @@ public class FacultyCRUD {
 		}
 	}
 
-	public void facultydelete(int facultyId) {
+	public void facultydelete() {
 		try {
-			facultyCRUD();
+			System.out.print("Enter Faculty ID: ");
+	        int facultyId = scanner.nextInt();
+
 			String query = "DELETE FROM subjects WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
@@ -54,9 +72,15 @@ public class FacultyCRUD {
 		}
 	}
 
-	public void facultyupdate(String facultyName,int facultyId) {
+	public void facultyupdate() {
 		try {
-			facultyCRUD();
+			System.out.print("Enter Faculty ID: ");
+	        int facultyId = scanner.nextInt();
+
+	        System.out.print("Enter Faculty Name: ");
+	        scanner.nextLine(); // Consume the newline left by nextInt()
+	        String facultyName = scanner.nextLine();
+
 			String query = "UPDATE subjects SET facultyName = '?' WHERE facultyId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, facultyName);
