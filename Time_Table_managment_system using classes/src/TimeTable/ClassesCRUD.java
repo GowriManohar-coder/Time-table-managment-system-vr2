@@ -14,7 +14,7 @@ public class ClassesCRUD {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/employee";
+			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
 			Connection con;
