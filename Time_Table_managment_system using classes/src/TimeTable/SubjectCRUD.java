@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class SubjectCRUD {
 	private Connection con;
+	Scanner scanner = new Scanner(System.in);
 
 	public void subjectCRUD() {
 		try {
@@ -28,8 +30,18 @@ public class SubjectCRUD {
 
 	}
 
-	public void subjectInsert(int subjectId, String subjectName, int facultyId, int classId) {
+	public void subjectInsert() {
 		try {
+			System.out.print("Enter Subject ID: ");
+			int subjectId = scanner.nextInt();
+			scanner.nextLine();
+			System.out.print("Enter Subject Name: ");
+			String subjectName = scanner.nextLine();
+			System.out.print("Enter Faculty ID: ");
+			int facultyId = scanner.nextInt();
+			scanner.nextLine(); 
+			System.out.print("Enter Class ID: ");
+			int classId = scanner.nextInt();
 			String query = "INSERT INTO subjects (subjectId, subjectName, facultyId, classId) VALUES (?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, subjectId);
@@ -41,8 +53,10 @@ public class SubjectCRUD {
 		}
 	}
 
-	public void subjectdelete(int subjectId) {
+	public void subjectdelete() {
 		try {
+			System.out.print("Enter Subject ID: ");
+			int subjectId = scanner.nextInt();
 			String query = "DELETE FROM subjects WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, subjectId);
@@ -51,8 +65,13 @@ public class SubjectCRUD {
 		}
 	}
 
-	public void subjectupdate(String subjectName,int subjectId) {
+	public void subjectupdate() {
 		try {
+			System.out.print("Enter Subject ID: ");
+			int subjectId = scanner.nextInt();
+			scanner.nextLine();
+			System.out.print("Enter Subject Name: ");
+			String subjectName = scanner.nextLine();
 			String query = "UPDATE subjects SET subjectName = '?' WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, subjectName);
@@ -61,19 +80,19 @@ public class SubjectCRUD {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
 	}
-	
+
 	public void subjectSelect() {
 		try {
 			String query = "select * from subjects";
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-			    int subjectId = rs.getInt("subjectId");
-			    String subjectName = rs.getString("subjectName");
-			    int facultyId = rs.getInt("facultyId");
-			    int classId = rs.getInt("classId");
+				int subjectId = rs.getInt("subjectId");
+				String subjectName = rs.getString("subjectName");
+				int facultyId = rs.getInt("facultyId");
+				int classId = rs.getInt("classId");
 
-			    System.out.println(subjectId + "  " + subjectName + "  " + facultyId + "  " + classId);
+				System.out.println(subjectId + "  " + subjectName + "  " + facultyId + "  " + classId);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
