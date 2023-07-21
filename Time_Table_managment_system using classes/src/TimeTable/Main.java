@@ -1,8 +1,18 @@
 package TimeTable;
 
+import java.util.Scanner;
+
 public class Main {
 	
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		CollegeCRUD c = new CollegeCRUD();
+		DepartmentsCRUD d = new DepartmentsCRUD();
+		ClassesCRUD cl = new ClassesCRUD();
+		SubjectCRUD s = new SubjectCRUD();
+		FacultyCRUD f = new FacultyCRUD();
+		PeriodCRUD p = new PeriodCRUD();
+		DaysCRUD da = new DaysCRUD();
 		while(true) {
 			System.out.println("=================TIME TABLE MANAGMENT SYSTEM=============");
 			System.out.println("\n\tPress 1 for inserting into college table");
@@ -37,13 +47,36 @@ public class Main {
 			int choice = scan.nextInt();
 			
 			switch(choice) {
-			case 1 : collegeinsert(); break;
-			case 2 : departmentinsert();break;
-			case 3 : ();break;
-			case 4 : (); break;
-			case 5 : ();break;
-			case 9 : System.exit(choice);
-			default : System.out.println("Please choose your option between 1 and 5");
+			case 1 : c.collegeInsert(); break;
+			case 2 : d.departmentsInsert();break;
+			case 3 : cl .ClassesInsert();break;
+			case 4 : s.subjectInsert(); break;
+			case 5 : f.facultyInsert();break;
+			case 6 : p.periodInsert(); break;
+			case 7 : da.daysInsert();break;
+			case 8 : c.collegedelete(); break;
+			case 9 : d.departmentsdelete();break;
+			case 10 : cl .Classesdelete();break;
+			case 11 : s.subjectdelete(); break;
+			case 12 : f.facultydelete();break;
+			case 13 : p.perioddelete(); break;
+			case 14 : da.daysdelete();break;
+			case 15 : c.collegeupdate(); break;
+			case 16 : d.departmentsupdate();break;
+			case 17 : cl .Classesupdate();break;
+			case 18 : s.subjectupdate(); break;
+			case 19 : f.facultyupdate();break;
+			case 20 : p.periodupdate(); break;
+			case 21 : da.daysupdate();break;
+			case 22 : c.collegeSelect(); break;
+			case 23 : d.departmentsSelect();break;
+			case 24 : cl .ClassesSelect();break;
+			case 25 : s.subjectSelect(); break;
+			case 26 : f.facultySelect();break;
+			case 27 : p.periodSelect(); break;
+			case 28 : da.daysSelect();break;
+			case 0: System.exit(choice);
+			default : System.out.println("Please choose your option between 0 and 28");
 			}
 		}
 	}
