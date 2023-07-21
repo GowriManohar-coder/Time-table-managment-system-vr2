@@ -75,7 +75,7 @@ public class ClassesCRUD {
 			    System.out.println(ClassesId + "  " + ClassesName + "  " + ClassesId);
 			}
 		} catch (SQLException e) {
-			System.out.println("Error while deleting data: " + e.getMessage());
+			System.out.println("Error while reading data: " + e.getMessage());
 		}
 	}
 }
