@@ -5,9 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class DaysCURD {
 	private Connection con;
+	Scanner scanner = new Scanner(System.in);
 	public void daysCURD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -27,8 +29,13 @@ public class DaysCURD {
 
 	}
 
-	public void daysInsert(int daysId, String daysName) {
+	public void daysInsert() {
 		try {
+			System.out.print("Enter Days ID: ");
+	        int daysId = scanner.nextInt();
+	        scanner.nextLine();
+	        System.out.print("Enter Days Name: ");
+	        String daysName = scanner.nextLine();
 			String query = "INSERT INTO days (daysId, daysName) VALUES (?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, daysId);
@@ -38,8 +45,10 @@ public class DaysCURD {
 		}
 	}
 
-	public void daysdelete(int daysId) {
+	public void daysdelete() {
 		try {
+			System.out.print("Enter Days ID: ");
+	        int daysId = scanner.nextInt();
 			String query = "DELETE FROM days WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, daysId);
@@ -48,11 +57,16 @@ public class DaysCURD {
 		}
 	}
 
-	public void daysupdate(int daysId, String daysFrom) {
+	public void daysupdate() {
 		try {
+			System.out.print("Enter Days ID: ");
+	        int daysId = scanner.nextInt();
+	        scanner.nextLine();
+	        System.out.print("Enter Days Name: ");
+	        String daysName = scanner.nextLine();
 			String query = "UPDATE days SET daysName = '?' WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
-			st.setString(1, daysFrom);
+			st.setString(1, daysName);
 			st.setInt(2, daysId);
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
