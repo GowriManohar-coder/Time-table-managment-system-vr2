@@ -12,17 +12,17 @@ public class PeriodCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public void periodCRUD() {
+	public  periodCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			Connection con;
+			
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
-			con.close();
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("unable to find the driver");
 		} catch (SQLException e) {
@@ -51,6 +51,7 @@ public class PeriodCRUD {
 			st.setString(3, periodTo);
 			st.setInt(4, classesId);
 			st.setInt(5, facultyId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -63,6 +64,7 @@ public class PeriodCRUD {
 			String query = "DELETE FROM period WHERE periodId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, periodId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -79,6 +81,7 @@ public class PeriodCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, periodFrom);
 			st.setInt(2, periodId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
 		}
