@@ -37,7 +37,6 @@ public class ClassesCRUD {
 		        String classesName = scanner.nextLine();
 		        System.out.print("Enter Department ID: ");
 		        int departmentId = scanner.nextInt();
-		        scanner.close();
 			String query = "INSERT INTO Classes (classesId, classesName, departmentId) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, classesId);

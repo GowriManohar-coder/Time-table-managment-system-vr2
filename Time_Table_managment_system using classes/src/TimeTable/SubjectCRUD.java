@@ -39,13 +39,13 @@ public class SubjectCRUD {
 			int facultyId = scanner.nextInt();
 			scanner.nextLine(); 
 			System.out.print("Enter Class ID: ");
-			int classId = scanner.nextInt();
-			String query = "INSERT INTO subject (subjectId, subjectName, facultyId, classId) VALUES (?,?,?,?)";
+			int classesId = scanner.nextInt();
+			String query = "INSERT INTO subject (subjectId, subjectName, facultyId, classesId) VALUES (?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, subjectId);
 			st.setString(2, subjectName);
 			st.setInt(3, facultyId);
-			st.setInt(4, classId);
+			st.setInt(4, classesId);
 			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
@@ -91,9 +91,9 @@ public class SubjectCRUD {
 				int subjectId = rs.getInt("subjectId");
 				String subjectName = rs.getString("subjectName");
 				int facultyId = rs.getInt("facultyId");
-				int classId = rs.getInt("classId");
+				int classesId = rs.getInt("classesId");
 
-				System.out.println(subjectId + "  " + subjectName + "  " + facultyId + "  " + classId);
+				System.out.println(subjectId + "  " + subjectName + "  " + facultyId + "  " + classesId);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
