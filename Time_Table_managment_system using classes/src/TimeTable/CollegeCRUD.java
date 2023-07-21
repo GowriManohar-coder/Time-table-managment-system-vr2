@@ -57,7 +57,7 @@ public class CollegeCRUD {
 			st.setString(1, collegeName);
 			st.setInt(2, collegeId);
 		} catch (SQLException e) {
-			System.out.println("Error while deleting data: " + e.getMessage());
+			System.out.println("Error while update data: " + e.getMessage());
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class CollegeCRUD {
 			    System.out.println(collegeId + "  " + collegeName + "  " + collegeDepartments );
 			}
 		} catch (SQLException e) {
-			System.out.println("Error while Reading data: " + e.getMessage());
+			System.out.println("Error while reading data: " + e.getMessage());
 		}
 	}
 
