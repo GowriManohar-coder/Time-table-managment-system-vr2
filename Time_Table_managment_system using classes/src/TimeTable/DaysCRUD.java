@@ -36,10 +36,13 @@ public class DaysCRUD {
 	        scanner.nextLine();
 	        System.out.print("Enter Days Name: ");
 	        String daysName = scanner.nextLine();
-			String query = "INSERT INTO days (daysId, daysName) VALUES (?,?)";
+	        System.out.print("Enter Period Id: ");
+	        int periodId = scanner.nextInt();
+			String query = "INSERT INTO days (daysId, daysName, periodId) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, daysId);
 			st.setString(2, daysName);
+			st.setInt(3, periodId);
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -81,8 +84,9 @@ public class DaysCRUD {
 			while (rs.next()) {
 			    int daysId = rs.getInt("daysId");
 			    String daysName = rs.getString("daysName");
+			    int periodId = rs.getInt("periodId");
 
-			    System.out.println(daysId + "  " + daysName);
+			    System.out.println(daysId + "  " + daysName + "  " +periodId);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while reading data: " + e.getMessage());

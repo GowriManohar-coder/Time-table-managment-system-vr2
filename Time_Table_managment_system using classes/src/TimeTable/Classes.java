@@ -2,23 +2,23 @@ package TimeTable;
 
 public class Classes {
 	
-	private int classId;
-	private String className;
+	private int classesId;
+	private String classesName;
 	private int departmentId;
 	
-	public Classes(int classId, String className, int departmentId) {
+	public Classes(int classesId, String classesName, int departmentId) {
 		super();
-		this.classId = classId;
-		this.className = className;
+		this.classesId = classesId;
+		this.classesName = classesName;
 		this.departmentId = departmentId;
 	}
 
-	public int getClassId() {
-		return classId;
+	public int getclassesId() {
+		return classesId;
 	}
 
-	public String getClassName() {
-		return className;
+	public String getclassesName() {
+		return classesName;
 	}
 
 	public int getDepartmentId() {
@@ -27,7 +27,7 @@ public class Classes {
 
 	@Override
 	public String toString() {
-		return "Class [classId=" + classId + ", className=" + className + ", departmentId=" + departmentId + "]";
+		return "classes [classesId=" + classesId + ", classesName=" + classesName + ", departmentId=" + departmentId + "]";
 	}
 	
 	

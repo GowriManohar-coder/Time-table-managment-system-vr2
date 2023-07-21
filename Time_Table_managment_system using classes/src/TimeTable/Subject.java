@@ -8,13 +8,13 @@ public class Subject {
 	private int subjectId;
 	private String subjectName;
 	private int facultyId;
-	private int classId;
-	public Subject(int subjectId, String subjectName, int facultyId, int classId) {
+	private int classesId;
+	public Subject(int subjectId, String subjectName, int facultyId, int classesId) {
 		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.facultyId = facultyId;
-		this.classId = classId;
+		this.classesId = classesId;
 	}
 	public int getSubjectId() {
 		return subjectId;
@@ -25,12 +25,12 @@ public class Subject {
 	public int getFacultyId() {
 		return facultyId;
 	}
-	public int getClassId() {
-		return classId;
+	public int getClassesId() {
+		return classesId;
 	}
 	@Override
 	public String toString() {
-		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", facultyId=" + facultyId + ", classId=" + classId + "]";
+		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", facultyId=" + facultyId + ", classesId=" + classesId + "]";
 	}
 	
 	

@@ -40,11 +40,17 @@ public class PeriodCRUD {
 			String periodFrom = scanner.nextLine();
 			System.out.print("Enter Period To (e.g., 9-Pm): ");
 			String periodTo = scanner.nextLine();
-			String query = "INSERT INTO period (periodId, periodFrom, periodTo) VALUES (?,?,?)";
+			System.out.print("Enter classes ID: ");
+			int classesId = scanner.nextInt();
+			System.out.print("Enter faculty ID: ");
+			int facultyId = scanner.nextInt();
+			String query = "INSERT INTO period (periodId, periodFrom, periodTo, classesId, facultyId) VALUES (?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, periodId);
 			st.setString(2, periodFrom);
 			st.setString(3, periodTo);
+			st.setInt(4, classesId);
+			st.setInt(5, facultyId);
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -69,7 +75,7 @@ public class PeriodCRUD {
 			scanner.nextLine();
 			System.out.print("Enter Period From (e.g., 9-Pm): ");
 			String periodFrom = scanner.nextLine();
-			String query = "UPDATE period SET periodFrom = '?' WHERE periodId = ?";
+			String query = "UPDATE period SET periodFrom = '?', periodTo = '?' WHERE periodId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, periodFrom);
 			st.setInt(2, periodId);

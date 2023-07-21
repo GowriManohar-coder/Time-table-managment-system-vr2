@@ -44,16 +44,16 @@ public class FacultyCRUD {
 	        System.out.print("Enter Subject ID: ");
 	        int subjectId = scanner.nextInt();
 
-	        System.out.print("Enter Class ID: ");
-	        int classId = scanner.nextInt();
+	        System.out.print("Enter Classes ID: ");
+	        int classesId = scanner.nextInt();
 
-			String query = "INSERT INTO faculty (facultyId, facultyName, departmentId, subjectId,   classId) VALUES (?,?,?,?,?)";
+			String query = "INSERT INTO faculty (facultyId, facultyName, departmentId, subjectId, classesId) VALUES (?,?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
 			st.setString(2, facultyName);
 			st.setInt(3, departmentId);
 			st.setInt(4, subjectId);
-			st.setInt(5, classId);
+			st.setInt(5, classesId);
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -64,7 +64,7 @@ public class FacultyCRUD {
 			System.out.print("Enter Faculty ID: ");
 	        int facultyId = scanner.nextInt();
 
-			String query = "DELETE FROM subjects WHERE subjectId = ?";
+			String query = "DELETE FROM faculty WHERE facultyId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
 		} catch (SQLException e) {
@@ -81,7 +81,7 @@ public class FacultyCRUD {
 	        scanner.nextLine(); // Consume the newline left by nextInt()
 	        String facultyName = scanner.nextLine();
 
-			String query = "UPDATE subjects SET facultyName = '?' WHERE facultyId = ?";
+			String query = "UPDATE faculty SET facultyName = '?' WHERE facultyId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, facultyName);
 			st.setInt(2, facultyId);
@@ -101,7 +101,7 @@ public class FacultyCRUD {
 			    String facultyName = rs.getString("facultyName");
 			    int subjectId = rs.getInt("subjectId");
 			    int departmentId = rs.getInt("departmentId");
-			    int classId = rs.getInt("classId");
+			    int classId = rs.getInt("classesId");
 
 			    System.out.println(facultyId + " " + facultyName +" "+ subjectId +" " + departmentId + " " + classId);
 			}

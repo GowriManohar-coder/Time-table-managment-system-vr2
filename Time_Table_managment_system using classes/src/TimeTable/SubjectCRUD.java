@@ -42,7 +42,7 @@ public class SubjectCRUD {
 			scanner.nextLine(); 
 			System.out.print("Enter Class ID: ");
 			int classId = scanner.nextInt();
-			String query = "INSERT INTO subjects (subjectId, subjectName, facultyId, classId) VALUES (?,?,?,?)";
+			String query = "INSERT INTO subject (subjectId, subjectName, facultyId, classId) VALUES (?,?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, subjectId);
 			st.setString(2, subjectName);
@@ -57,7 +57,7 @@ public class SubjectCRUD {
 		try {
 			System.out.print("Enter Subject ID: ");
 			int subjectId = scanner.nextInt();
-			String query = "DELETE FROM subjects WHERE subjectId = ?";
+			String query = "DELETE FROM subject WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, subjectId);
 		} catch (SQLException e) {
@@ -72,7 +72,7 @@ public class SubjectCRUD {
 			scanner.nextLine();
 			System.out.print("Enter Subject Name: ");
 			String subjectName = scanner.nextLine();
-			String query = "UPDATE subjects SET subjectName = '?' WHERE subjectId = ?";
+			String query = "UPDATE subject SET subjectName = '?' WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, subjectName);
 			st.setInt(2, subjectId);
@@ -83,7 +83,7 @@ public class SubjectCRUD {
 
 	public void subjectSelect() {
 		try {
-			String query = "select * from subjects";
+			String query = "select * from subject";
 			PreparedStatement st = con.prepareStatement(query);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
