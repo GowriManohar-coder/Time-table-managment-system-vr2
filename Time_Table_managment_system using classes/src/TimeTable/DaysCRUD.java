@@ -10,17 +10,15 @@ import java.util.Scanner;
 public class DaysCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public void daysCRUD() {
+	public daysCRUD() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
 			String url = "jdbc:mysql://localhost:3306/manohar";
 			String username = "root";
 			String password = "root";
-			Connection con;
 			con = DriverManager.getConnection(url, username, password);
 			System.out.println("connected with database successfully");
-			con.close();
 		} catch (ClassNotFoundException e) {
 			System.out.println("unable to find the driver");
 		} catch (SQLException e) {
@@ -43,6 +41,7 @@ public class DaysCRUD {
 			st.setInt(1, daysId);
 			st.setString(2, daysName);
 			st.setInt(3, periodId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -55,6 +54,7 @@ public class DaysCRUD {
 			String query = "DELETE FROM days WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, daysId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -71,6 +71,7 @@ public class DaysCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, daysName);
 			st.setInt(2, daysId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while updating data: " + e.getMessage());
 		}
