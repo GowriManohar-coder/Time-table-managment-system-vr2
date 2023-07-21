@@ -12,14 +12,14 @@ public class DepartmentsCRUD {
 	private Connection con;
 	Scanner scanner=new Scanner(System.in);
 
-	void departmentCrud()
+	public departmentCRUD()
 	{
     try
     {
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sravika", "root", "root");
     System.out.println("connected to data base");
-    con.close();
+    
 	} catch (ClassNotFoundException e) {
 		System.out.println("unable to find the driver");
 	} catch (SQLException e) {
@@ -60,6 +60,7 @@ public class DepartmentsCRUD {
 			st.setString(4, departmentSubject);
 			st.setString(5, departmentClasses);
 			st.setString(5, departmentFaculty);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
@@ -74,6 +75,7 @@ public class DepartmentsCRUD {
 			String query = "DELETE FROM departments WHERE departmentId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, departmentId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while deleting data: " + e.getMessage());
 		}
@@ -90,6 +92,7 @@ public class DepartmentsCRUD {
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, departmentName);
 			st.setInt(2, departmentId);
+			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while update data: " + e.getMessage());
 		}
