@@ -72,7 +72,7 @@ public class SubjectCRUD {
 			scanner.nextLine();
 			System.out.print("Enter Subject Name: ");
 			String subjectName = scanner.nextLine();
-			String query = "UPDATE subject SET subjectName = '?' WHERE subjectId = ?";
+			String query = "UPDATE subject SET subjectName = ? WHERE subjectId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, subjectName);
 			st.setInt(2, subjectId);

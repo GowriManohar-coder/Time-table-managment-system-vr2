@@ -83,7 +83,7 @@ public class FacultyCRUD {
 	        scanner.nextLine(); // Consume the newline left by nextInt()
 	        String facultyName = scanner.nextLine();
 
-			String query = "UPDATE faculty SET facultyName = '?' WHERE facultyId = ?";
+			String query = "UPDATE faculty SET facultyName = ? WHERE facultyId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, facultyName);
 			st.setInt(2, facultyId);

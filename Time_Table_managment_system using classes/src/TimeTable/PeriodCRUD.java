@@ -76,7 +76,7 @@ public class PeriodCRUD {
 			scanner.nextLine();
 			System.out.print("Enter Period From (e.g., 9-Pm): ");
 			String periodFrom = scanner.nextLine();
-			String query = "UPDATE period SET periodFrom = '?', periodTo = '?' WHERE periodId = ?";
+			String query = "UPDATE period SET periodFrom = '?', periodTo = ? WHERE periodId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, periodFrom);
 			st.setInt(2, periodId);

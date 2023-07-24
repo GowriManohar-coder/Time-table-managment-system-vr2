@@ -73,7 +73,7 @@ public class CollegeCRUD {
 			System.out.print("Enter college ID: ");
 			int collegeId = scanner.nextInt();
 
-			String query = "UPDATE college SET collegeName = '?' WHERE collegeId = ?";
+			String query = "UPDATE college SET collegeName = ? WHERE collegeId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, collegeName);
 			st.setInt(2, collegeId);

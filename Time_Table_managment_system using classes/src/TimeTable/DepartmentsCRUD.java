@@ -88,7 +88,7 @@ public class DepartmentsCRUD {
 
 		        System.out.print("Enter Department Name: ");
 		        String departmentName = scanner.nextLine();
-			String query = "UPDATE departments SET departmentName = '?' WHERE departmentId = ?";
+			String query = "UPDATE departments SET departmentName = ? WHERE departmentId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, departmentName);
 			st.setInt(2, departmentId);

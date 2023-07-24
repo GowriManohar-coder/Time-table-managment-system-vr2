@@ -67,7 +67,7 @@ public class DaysCRUD {
 	        scanner.nextLine();
 	        System.out.print("Enter Days Name: ");
 	        String daysName = scanner.nextLine();
-			String query = "UPDATE days SET daysName = '?' WHERE daysId = ?";
+			String query = "UPDATE days SET daysName = ? WHERE daysId = ?";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, daysName);
 			st.setInt(2, daysId);
