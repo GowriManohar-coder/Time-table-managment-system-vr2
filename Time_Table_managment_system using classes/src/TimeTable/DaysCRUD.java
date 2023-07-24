@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class DaysCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public DaysCRUD() {
+	
+	public void Days() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
@@ -34,13 +35,10 @@ public class DaysCRUD {
 	        scanner.nextLine();
 	        System.out.print("Enter Days Name: ");
 	        String daysName = scanner.nextLine();
-	        System.out.print("Enter Period Id: ");
-	        int periodId = scanner.nextInt();
-			String query = "INSERT INTO days (daysId, daysName, periodId) VALUES (?,?,?)";
+			String query = "INSERT INTO days (daysId, daysName) VALUES (?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, daysId);
 			st.setString(2, daysName);
-			st.setInt(3, periodId);
 			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
@@ -85,9 +83,8 @@ public class DaysCRUD {
 			while (rs.next()) {
 			    int daysId = rs.getInt("daysId");
 			    String daysName = rs.getString("daysName");
-			    int periodId = rs.getInt("periodId");
 
-			    System.out.println(daysId + "  " + daysName + "  " +periodId);
+			    System.out.println(daysId + "  " + daysName);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while reading data: " + e.getMessage());

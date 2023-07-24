@@ -12,7 +12,7 @@ public class PeriodCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public  PeriodCRUD() {
+	public  void Period() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
@@ -39,17 +39,11 @@ public class PeriodCRUD {
 			String periodFrom = scanner.nextLine();
 			System.out.print("Enter Period To (e.g., 9-Pm): ");
 			String periodTo = scanner.nextLine();
-			System.out.print("Enter classes ID: ");
-			int classesId = scanner.nextInt();
-			System.out.print("Enter faculty ID: ");
-			int facultyId = scanner.nextInt();
-			String query = "INSERT INTO period (periodId, periodFrom, periodTo, classesId, facultyId) VALUES (?,?,?,?,?)";
+			String query = "INSERT INTO period (periodId, periodFrom, periodTo) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, periodId);
 			st.setString(2, periodFrom);
 			st.setString(3, periodTo);
-			st.setInt(4, classesId);
-			st.setInt(5, facultyId);
 			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());

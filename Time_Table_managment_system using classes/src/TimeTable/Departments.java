@@ -6,11 +6,11 @@ public class Departments {
 	private int collegeId;
 	private int departmentId;
 	private String departmentName;
-	private List<Subject> departmentSubject;
+	private List<Subjects> departmentSubject;
 	private List<Class> departmentClasses;
 	private List<Faculty> departmentFaculty;
 	
-	public Departments(int collegeId, int departmentId, String departmentName, List<Subject> departmentSubject,
+	public Departments(int collegeId, int departmentId, String departmentName, List<Subjects> departmentSubject,
 			List<Class> departmentClasses, List<Faculty> departmentFaculty) {
 		super();
 		this.collegeId = collegeId;
@@ -33,7 +33,7 @@ public class Departments {
 		return departmentName;
 	}
 
-	public List<Subject> getDepartmentSubject() {
+	public List<Subjects> getDepartmentSubject() {
 		return departmentSubject;
 	}
 

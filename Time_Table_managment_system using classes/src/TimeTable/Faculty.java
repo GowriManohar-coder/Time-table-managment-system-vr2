@@ -6,18 +6,13 @@ public class Faculty {
 	
 	private int facultyId;
 	private String facultyName;
-	private List<Subject> subjectId;
 	private int departmentId;
-	private List<Class> classesId;
 	
-	public Faculty(int facultyId, String facultyName, List<Subject> subjectId, int departmentId,
-			List<Class> classesId) {
+	public Faculty(int facultyId, String facultyName, int departmentId) {
 		super();
 		this.facultyId = facultyId;
 		this.facultyName = facultyName;
-		this.subjectId = subjectId;
 		this.departmentId = departmentId;
-		this.classesId = classesId;
 	}
 
 	public int getFacultyId() {
@@ -28,25 +23,15 @@ public class Faculty {
 		return facultyName;
 	}
 
-	public List<Subject> getSubjectId() {
-		return subjectId;
-	}
-
 	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public List<Class> getClassesId() {
-		return classesId;
-	}
-
 	@Override
 	public String toString() {
-		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectId=" + subjectId
-				+ ", departmentId=" + departmentId + ", classesId=" + classesId + "]";
+		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", departmentId=" + departmentId
+				+ "]";
 	}
-	
-	
 	
 	
 }

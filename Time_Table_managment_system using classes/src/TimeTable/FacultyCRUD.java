@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class FacultyCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
-	public  FacultyCRUD() {
+	
+	public  void Faculty() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");
@@ -41,19 +42,11 @@ public class FacultyCRUD {
 	        System.out.print("Enter Department ID: ");
 	        int departmentId = scanner.nextInt();
 
-	        System.out.print("Enter Subject ID: ");
-	        int subjectId = scanner.nextInt();
-
-	        System.out.print("Enter Classes ID: ");
-	        int classesId = scanner.nextInt();
-
-			String query = "INSERT INTO faculty (facultyId, facultyName, departmentId, subjectId, classesId) VALUES (?,?,?,?,?)";
+			String query = "INSERT INTO faculty (facultyId, facultyName, departmentId) VALUES (?,?,?)";
 			PreparedStatement st = con.prepareStatement(query);
 			st.setInt(1, facultyId);
 			st.setString(2, facultyName);
 			st.setInt(3, departmentId);
-			st.setInt(4, subjectId);
-			st.setInt(5, classesId);
 			st.execute();
 		} catch (SQLException e) {
 			System.out.println("Error while inserting data: " + e.getMessage());
@@ -101,11 +94,9 @@ public class FacultyCRUD {
 			while (rs.next()) {
 			    int facultyId = rs.getInt("facultyId");
 			    String facultyName = rs.getString("facultyName");
-			    int subjectId = rs.getInt("subjectId");
 			    int departmentId = rs.getInt("departmentId");
-			    int classId = rs.getInt("classesId");
 
-			    System.out.println(facultyId + " " + facultyName +" "+ subjectId +" " + departmentId + " " + classId);
+			    System.out.println(facultyId + " " + facultyName +" " + departmentId);
 			}
 		} catch (SQLException e) {
 			System.out.println("Error while reading data: " + e.getMessage());

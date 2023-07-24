@@ -11,7 +11,7 @@ public class CollegeCRUD {
 	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public CollegeCRUD() {
+	public void College() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("driver found successful");

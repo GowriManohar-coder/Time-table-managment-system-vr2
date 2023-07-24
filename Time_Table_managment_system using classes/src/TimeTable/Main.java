@@ -9,7 +9,7 @@ public class Main {
 		CollegeCRUD c = new CollegeCRUD();
 		DepartmentsCRUD d = new DepartmentsCRUD();
 		ClassesCRUD cl = new ClassesCRUD();
-		SubjectCRUD s = new SubjectCRUD();
+		SubjectsCRUD s = new SubjectsCRUD();
 		FacultyCRUD f = new FacultyCRUD();
 		PeriodCRUD p = new PeriodCRUD();
 		DaysCRUD da = new DaysCRUD();
