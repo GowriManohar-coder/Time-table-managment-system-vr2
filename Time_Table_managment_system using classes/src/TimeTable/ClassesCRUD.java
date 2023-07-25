@@ -8,28 +8,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ClassesCRUD {
-	private Connection con;
-
-	public void Classes() {
+	 Scanner scanner = new Scanner(System.in);
+	public void ClassesInsert(Connection con) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
-
-	}
-
-	public void ClassesInsert() {
-		try {
-			  Scanner scanner = new Scanner(System.in);
 			  System.out.print("Enter Classes ID: ");
 		        int classesId = scanner.nextInt();
 		        scanner.nextLine(); 
@@ -48,9 +29,8 @@ public class ClassesCRUD {
 		}
 	}
 
-	public void Classesdelete() {
+	public void Classesdelete(Connection con) {
 		try {
-			 Scanner scanner = new Scanner(System.in);
 			  System.out.print("Enter Classes ID: ");
 		        int classesId = scanner.nextInt();
 		        scanner.nextLine();
@@ -63,9 +43,8 @@ public class ClassesCRUD {
 		}
 	}
 
-	public void Classesupdate() {
+	public void Classesupdate(Connection con) {
 		try {
-			 Scanner scanner = new Scanner(System.in);
 			 System.out.print("Enter classes Name: ");
 		        String classesName = scanner.nextLine();
 		        scanner.nextLine();
@@ -82,7 +61,7 @@ public class ClassesCRUD {
 		}
 	}
 	
-	public void ClassesSelect() {
+	public void ClassesSelect(Connection con) {
 		try {
 			String query = "select * from Classes";
 			PreparedStatement st = con.prepareStatement(query);

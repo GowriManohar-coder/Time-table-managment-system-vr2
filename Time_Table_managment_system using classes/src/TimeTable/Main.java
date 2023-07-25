@@ -1,10 +1,29 @@
 package TimeTable;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
 	
 	public static void main(String[] args) {
+		Connection con = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("driver found successful");
+			String url = "jdbc:mysql://localhost:3306/manohar";
+			String username = "root";
+			String password = "root";
+			con = DriverManager.getConnection(url, username, password);
+			System.out.println("connected with database successfully");
+		} catch (ClassNotFoundException e) {
+			System.out.println("unable to find the driver");
+		} catch (SQLException e) {
+			System.out.println("unable to connect with database");
+		}
+		
 		Scanner scan = new Scanner(System.in);
 		CollegeCRUD c = new CollegeCRUD();
 		DepartmentsCRUD d = new DepartmentsCRUD();
@@ -13,6 +32,7 @@ public class Main {
 		FacultyCRUD f = new FacultyCRUD();
 		PeriodCRUD p = new PeriodCRUD();
 		DaysCRUD da = new DaysCRUD();
+		TimetableCRUD tt = new TimetableCRUD();
 		while(true) {
 			System.out.println("=================TIME TABLE MANAGMENT SYSTEM=============");
 			System.out.println("\n\tPress 1 for inserting into college table");
@@ -43,40 +63,47 @@ public class Main {
 			System.out.println("\tPress 26 to view faculty table");
 			System.out.println("\tPress 27 to view period table");
 			System.out.println("\tPress 28 to view days table");
+			System.out.println("\tPress 29 for inserting into TimeTable table");
+			System.out.println("\tPress 30 to view Faculty Time Table");
+			System.out.println("\tPress 31 to view Class Time Table");
 			System.out.println("\n\tPlease Enter your Choice..");
 			int choice = scan.nextInt();
 			
 			switch(choice) {
-			case 1 : c.collegeInsert(); break;
-			case 2 : d.departmentsInsert();break;
-			case 3 : cl .ClassesInsert();break;
-			case 4 : s.subjectInsert(); break;
-			case 5 : f.facultyInsert();break;
-			case 6 : p.periodInsert(); break;
-			case 7 : da.daysInsert();break;
-			case 8 : c.collegedelete(); break;
-			case 9 : d.departmentsdelete();break;
-			case 10 : cl .Classesdelete();break;
-			case 11 : s.subjectdelete(); break;
-			case 12 : f.facultydelete();break;
-			case 13 : p.perioddelete(); break;
-			case 14 : da.daysdelete();break;
-			case 15 : c.collegeupdate(); break;
-			case 16 : d.departmentsupdate();break;
-			case 17 : cl .Classesupdate();break;
-			case 18 : s.subjectupdate(); break;
-			case 19 : f.facultyupdate();break;
-			case 20 : p.periodupdate(); break;
-			case 21 : da.daysupdate();break;
-			case 22 : c.collegeSelect(); break;
-			case 23 : d.departmentsSelect();break;
-			case 24 : cl .ClassesSelect();break;
-			case 25 : s.subjectSelect(); break;
-			case 26 : f.facultySelect();break;
-			case 27 : p.periodSelect(); break;
-			case 28 : da.daysSelect();break;
+			case 1 : c.collegeInsert(con); break;
+			case 2 : d.departmentsInsert(con);break;
+			case 3 : cl .ClassesInsert(con);break;
+			case 4 : s.subjectInsert(con); break;
+			case 5 : f.facultyInsert(con);break;
+			case 6 : p.periodInsert(con); break;
+			case 7 : da.daysInsert(con);break;
+			case 8 : c.collegedelete(con); break;
+			case 9 : d.departmentsdelete(con);break;
+			case 10 : cl .Classesdelete(con);break;
+			case 11 : s.subjectdelete(con); break;
+			case 12 : f.facultydelete(con);break;
+			case 13 : p.perioddelete(con); break;
+			case 14 : da.daysdelete(con);break;
+			case 15 : c.collegeupdate(con); break;
+			case 16 : d.departmentsupdate(con);break;
+			case 17 : cl .Classesupdate(con);break;
+			case 18 : s.subjectupdate(con); break;
+			case 19 : f.facultyupdate(con);break;
+			case 20 : p.periodupdate(con); break;
+			case 21 : da.daysupdate(con);break;
+			case 22 : c.collegeSelect(con); break;
+			case 23 : d.departmentsSelect(con);break;
+			case 24 : cl .ClassesSelect(con);break;
+			case 25 : s.subjectSelect(con); break;
+			case 26 : f.facultySelect(con);break;
+			case 27 : p.periodSelect(con); break;
+			case 28 : da.daysSelect(con);break;
+			case 29 : tt.timetableInsert(con);;break;
+			case 30 : tt.timetableByFacultyId(con);;break;
+			case 31 : tt.timetableByClassesid(con);;break;
 			case 0: System.exit(choice);
 			default : System.out.println("Please choose your option between 0 and 28");
+		
 			}
 		}
 	}

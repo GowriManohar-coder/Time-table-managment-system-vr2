@@ -8,27 +8,9 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CollegeCRUD {
-	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public void College() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
-
-	}
-
-	public void collegeInsert() {
+	public void collegeInsert(Connection con) {
 		try {
 			System.out.print("Enter college ID: ");
 			int collegeId = scanner.nextInt();
@@ -51,7 +33,7 @@ public class CollegeCRUD {
 		}
 	}
 
-	public void collegedelete() {
+	public void collegedelete(Connection con) {
 		try {
 			System.out.print("Enter college ID: ");
 			int collegeId = scanner.nextInt();
@@ -65,7 +47,7 @@ public class CollegeCRUD {
 		}
 	}
 
-	public void collegeupdate() {
+	public void collegeupdate(Connection con) {
 		try {
 			System.out.print("Enter college name: ");
 			String collegeName = scanner.nextLine();
@@ -83,7 +65,7 @@ public class CollegeCRUD {
 		}
 	}
 
-	public void collegeSelect() {
+	public void collegeSelect(Connection con) {
 		try {
 			String query = "select * from college";
 			PreparedStatement st = con.prepareStatement(query);

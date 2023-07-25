@@ -9,27 +9,9 @@ import java.util.Scanner;
 
 public class TimetableCRUD {
 
-	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public void timetable() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
-
-	}
-
-	public void timetableInsert() {
+	public void timetableInsert(Connection con) {
 		try {
 			System.out.print("What is the timetable ID? ");
 			int timetableid = scanner.nextInt();
@@ -67,37 +49,74 @@ public class TimetableCRUD {
 			System.out.println("Error while inserting data: " + e.getMessage());
 		}
 	}
-	
-	public void timetableByFacultyId() {
+
+	public void timetableByFacultyId(Connection con) {
 		try {
-		String query = "select * \r\n"
-				+ "from timetable as t\r\n"
-				+ "join departments as d on t.departmentid = d.departmentid\r\n"
-				+ "join classes as c on t.classesid = c.classesid\r\n"
-				+ "join faculty as f on t.facultyid = f.facultyid\r\n"
-				+ "join subjects as s on t.subjectid = s.subjectid\r\n"
-				+ "join days on t.daysid = days.daysid\r\n"
-				+ "join period on t.periodid = period.periodid\r\n"
-				+ "where f.facultyid = 1";
-		PreparedStatement ps = con.prepareStatement(query);
-		ResultSet rs = ps.executeQuery();
-		while(rs.next()) {
-			int timetableid = rs.getInt("timetableid");
-			String departmentname = rs.getString("departmentname");
-			String classesname = rs.getString("classesname");
-			String daysname = rs.getString("daysname");
-			String periodfrom = rs.getString("periodfrom");
-			String periodto = rs.getString("periodto");
-			String subjectname = rs.getString("subjectname");
-			String facultyname = rs.getString("facultyname");
-			
-			
-			
+			System.out.println("Enter the Faculty Id");
+			int facultyId = scanner.nextInt();
+
+			String query = "SELECT * FROM timetable AS t " + "JOIN departments AS d ON t.departmentid = d.departmentid "
+					+ "JOIN classes AS c ON t.classesid = c.classesid "
+					+ "JOIN faculty AS f ON t.facultyid = f.facultyid "
+					+ "JOIN subjects AS s ON t.subjectid = s.subjectid " + "JOIN days ON t.daysid = days.daysid "
+					+ "JOIN period ON t.periodid = period.periodid " + "WHERE f.facultyid = ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, facultyId);
+			ResultSet rs = ps.executeQuery();
+			System.out.printf("%-15s %-20s %-15s %-15s %-15s %-15s %-20s %-20s%n",
+		            "Timetable ID", "Department Name", "Classes Name", "Days Name",
+		            "Period From", "Period To", "Subject Name", "Faculty Name");
+			while (rs.next()) {
+				int timetableid = rs.getInt("timetableid");
+				String departmentname = rs.getString("departmentname");
+				String classesname = rs.getString("classesname");
+				String daysname = rs.getString("daysname");
+				String periodfrom = rs.getString("periodfrom");
+				String periodto = rs.getString("periodto");
+				String subjectname = rs.getString("subjectname");
+				String facultyname = rs.getString("facultyname");
+				
+				System.out.printf("%-15d %-20s %-15s %-15s %-15s %-15s %-20s %-20s%n", timetableid, departmentname,
+						classesname, daysname, periodfrom, periodto, subjectname, facultyname);
+
+			}
+		} catch (SQLException e) {
+			System.out.println("Error while reading data: " + e.getMessage());
 		}
-		
-		ps.execute();
-	} catch (SQLException e) {
-		System.out.println("Error while inserting data: " + e.getMessage());
 	}
+
+	public void timetableByClassesid(Connection con) {
+		try {
+			System.out.println("Enter the Classes Id");
+			int classesId = scanner.nextInt();
+
+			String query = "SELECT * FROM timetable AS t " + "JOIN departments AS d ON t.departmentid = d.departmentid "
+					+ "JOIN classes AS c ON t.classesid = c.classesid "
+					+ "JOIN faculty AS f ON t.facultyid = f.facultyid "
+					+ "JOIN subjects AS s ON t.subjectid = s.subjectid " + "JOIN days ON t.daysid = days.daysid "
+					+ "JOIN period ON t.periodid = period.periodid " + "WHERE c.classesid = ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, classesId);
+			ResultSet rs = ps.executeQuery();
+			System.out.printf("%-15s %-20s %-15s %-15s %-15s %-15s %-20s %-20s%n",
+		            "Timetable ID", "Department Name", "Classes Name", "Days Name",
+		            "Period From", "Period To", "Subject Name", "Faculty Name");
+			while (rs.next()) {
+				int timetableid = rs.getInt("timetableid");
+				String departmentname = rs.getString("departmentname");
+				String classesname = rs.getString("classesname");
+				String daysname = rs.getString("daysname");
+				String periodfrom = rs.getString("periodfrom");
+				String periodto = rs.getString("periodto");
+				String subjectname = rs.getString("subjectname");
+				String facultyname = rs.getString("facultyname");
+				
+				System.out.printf("%-15d %-20s %-15s %-15s %-15s %-15s %-20s %-20s%n", timetableid, departmentname,
+						classesname, daysname, periodfrom, periodto, subjectname, facultyname);
+
+			}
+		} catch (SQLException e) {
+			System.out.println("Error while reading data: " + e.getMessage());
+		}
 	}
 }

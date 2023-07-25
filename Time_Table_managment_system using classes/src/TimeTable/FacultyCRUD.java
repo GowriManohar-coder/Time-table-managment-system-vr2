@@ -8,35 +8,16 @@ import java.util.Scanner;
 
 
 public class FacultyCRUD {
-	private Connection con;
-	Scanner scanner = new Scanner(System.in);
 	
-	public  void Faculty() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
+	Scanner scanner = new Scanner(System.in);
 
-	}
-
-	public void facultyInsert() {
+	public void facultyInsert(Connection con) {
 		try {
 			System.out.print("Enter Faculty ID: ");
 	        int facultyId = scanner.nextInt();
 
 	        System.out.print("Enter Faculty Name: ");
-	        scanner.nextLine(); // Consume the newline left by nextInt()
+	        scanner.nextLine();
 	        String facultyName = scanner.nextLine();
 
 	        System.out.print("Enter Department ID: ");
@@ -53,7 +34,7 @@ public class FacultyCRUD {
 		}
 	}
 
-	public void facultydelete() {
+	public void facultydelete(Connection con) {
 		try {
 			System.out.print("Enter Faculty ID: ");
 	        int facultyId = scanner.nextInt();
@@ -67,13 +48,13 @@ public class FacultyCRUD {
 		}
 	}
 
-	public void facultyupdate() {
+	public void facultyupdate(Connection con) {
 		try {
 			System.out.print("Enter Faculty ID: ");
 	        int facultyId = scanner.nextInt();
 
 	        System.out.print("Enter Faculty Name: ");
-	        scanner.nextLine(); // Consume the newline left by nextInt()
+	        scanner.nextLine();
 	        String facultyName = scanner.nextLine();
 
 			String query = "UPDATE faculty SET facultyName = ? WHERE facultyId = ?";
@@ -86,7 +67,7 @@ public class FacultyCRUD {
 		}
 	}
 	
-	public void facultySelect() {
+	public void facultySelect(Connection con) {
 		try {
 			String query = "select * from faculty";
 			PreparedStatement st = con.prepareStatement(query);

@@ -8,27 +8,10 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SubjectsCRUD {
-	private Connection con;
+
 	Scanner scanner = new Scanner(System.in);
 
-	public  void Subjects() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
-
-	}
-
-	public void subjectInsert() {
+	public void subjectInsert(Connection con) {
 		try {
 			System.out.print("Enter Subject ID: ");
 			int subjectId = scanner.nextInt();
@@ -48,7 +31,7 @@ public class SubjectsCRUD {
 		}
 	}
 
-	public void subjectdelete() {
+	public void subjectdelete(Connection con) {
 		try {
 			System.out.print("Enter Subject ID: ");
 			int subjectId = scanner.nextInt();
@@ -61,7 +44,7 @@ public class SubjectsCRUD {
 		}
 	}
 
-	public void subjectupdate() {
+	public void subjectupdate(Connection con) {
 		try {
 			System.out.print("Enter Subject ID: ");
 			int subjectId = scanner.nextInt();
@@ -78,7 +61,7 @@ public class SubjectsCRUD {
 		}
 	}
 
-	public void subjectSelect() {
+	public void subjectSelect(Connection con) {
 		try {
 			String query = "select * from subject";
 			PreparedStatement st = con.prepareStatement(query);

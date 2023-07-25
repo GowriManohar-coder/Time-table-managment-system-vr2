@@ -9,28 +9,9 @@ import java.util.Scanner;
 
 public class PeriodCRUD {
 
-	private Connection con;
 	Scanner scanner = new Scanner(System.in);
 
-	public  void Period() {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("driver found successful");
-			String url = "jdbc:mysql://localhost:3306/manohar";
-			String username = "root";
-			String password = "root";
-			con = DriverManager.getConnection(url, username, password);
-			System.out.println("connected with database successfully");
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("unable to find the driver");
-		} catch (SQLException e) {
-			System.out.println("unable to connect with database");
-		}
-
-	}
-
-	public void periodInsert() {
+	public void periodInsert(Connection con) {
 		try {
 			System.out.print("Enter Period ID: ");
 			int periodId = scanner.nextInt();
@@ -50,7 +31,7 @@ public class PeriodCRUD {
 		}
 	}
 
-	public void perioddelete() {
+	public void perioddelete(Connection con) {
 		try {
 			System.out.print("Enter Period ID: ");
 			int periodId = scanner.nextInt();
@@ -63,7 +44,7 @@ public class PeriodCRUD {
 		}
 	}
 
-	public void periodupdate() {
+	public void periodupdate(Connection con) {
 		try {
 			System.out.print("Enter Period ID: ");
 			int periodId = scanner.nextInt();
@@ -80,7 +61,7 @@ public class PeriodCRUD {
 		}
 	}
 
-	public void periodSelect() {
+	public void periodSelect(Connection con) {
 		try {
 			String query = "select * from period";
 			PreparedStatement st = con.prepareStatement(query);
